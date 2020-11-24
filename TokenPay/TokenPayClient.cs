@@ -9,7 +9,7 @@ namespace TokenPay
 {
     public class TokenPayClient
     {
-        private const string BaseUrl = "https://api.tokenpay.com.tr";
+        private const string BaseUrl = "https://api-gateway.tokenpay.com.tr";
         private readonly InstallmentAdapter _installmentAdapter;
         private readonly OnboardingAdapter _onboardingAdapter;
         private readonly PaymentAdapter _paymentAdapter;
