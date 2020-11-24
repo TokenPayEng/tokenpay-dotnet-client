@@ -23,5 +23,5 @@ jobs:
         run: dotnet pack -c Release -p:PackageVersion=${GITHUB_REF#refs/*/} ./TokenPay
 
       - name: Push Packed Client Library to Nuget
-        run:  dotnet nuget push ./TokenPay/bin/Release/*.nupkg
+        run:  dotnet nuget -k ${{secrets.NUGET_SECRET_KEY}} push ./TokenPay/bin/Release/*.nupkg
        
