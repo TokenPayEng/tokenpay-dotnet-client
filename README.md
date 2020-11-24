@@ -6,7 +6,7 @@ This repo contains the Dotnet client for TokenPay API.
 
 ## Requirements
 - .NET Framework 4.6+
-- .NET Core 1.0+ 
+- .NET Core 1.1+ 
 - .NET Core 2.0+
 
 ## Installation
