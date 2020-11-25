@@ -1,3 +1,7 @@
+using System.Collections.Generic;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
 using NUnit.Framework;
 using TokenPay.Request;
 using TokenPay.Request.Common;
@@ -6,11 +10,17 @@ namespace Test
 {
     public class HashGeneratorTest
     {
+        [SetUp]
+        public void Setup()
+        {
+            ConfigureJsonConverter();
+        }
+
         [Test]
         public void Should_Generate_Hash()
         {
             //given
-            var expectedSignature = "JCHNFH6WY4WMOUIYHEHSPPZ/YXJ/4+JHGGT9AEQE6TO=";
+            var expectedSignature = "JAIELEQK7VZ4LJDB9UOWYVIYAM0H5DWJGFJDC5EV4Y4=";
             var request = new CreateBuyerRequest
             {
                 BuyerExternalId = "ext-1511",
@@ -43,6 +53,23 @@ namespace Test
 
             //then
             Assert.AreEqual(expectedSignature, signature);
+        }
+
+        private static void ConfigureJsonConverter()
+        {
+            JsonConvert.DefaultSettings = () =>
+            {
+                var settings = new JsonSerializerSettings
+                {
+                    ContractResolver = new CamelCasePropertyNamesContractResolver(),
+                    NullValueHandling = NullValueHandling.Ignore,
+                    Converters = new List<JsonConverter>
+                    {
+                        new StringEnumConverter()
+                    }
+                };
+                return settings;
+            };
         }
     }
 }
