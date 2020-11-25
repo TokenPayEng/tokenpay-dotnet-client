@@ -2,6 +2,8 @@
 
 ![TokenPay Dotnet CI](https://github.com/craftbaseio/tokenpay-dotnet-client/workflows/TokenPay%20Dotnet%20CI/badge.svg)
 
+![Nuget](https://img.shields.io/nuget/v/TokenPay)
+
 This repo contains the Dotnet client for TokenPay API.
 
 ## Requirements
