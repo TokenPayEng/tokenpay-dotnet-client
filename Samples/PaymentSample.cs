@@ -10,8 +10,8 @@ namespace Samples
 {
     public class PaymentSample
     {
-        private readonly TokenPayClient _tokenPayClient =
-            new TokenPayClient("api-key", "secret-key", "https://api-gateway.tokenpay.com.tr");
+        private readonly TokenPay.TokenPay _tokenPay =
+            new TokenPay.TokenPay("api-key", "secret-key", "https://api-gateway.tokenpay.com.tr");
 
         [Test]
         public void Create_Payment()
@@ -56,7 +56,7 @@ namespace Samples
                 }
             };
 
-            var response = _tokenPayClient.Payment().CreatePayment(request);
+            var response = _tokenPay.Payment().CreatePayment(request);
             Assert.NotNull(response.Id);
             Assert.AreEqual(request.Price, response.Price);
             Assert.AreEqual(request.PaidPrice, response.PaidPrice);
@@ -128,7 +128,7 @@ namespace Samples
                 }
             };
 
-            var response = _tokenPayClient.Payment().CreatePayment(request);
+            var response = _tokenPay.Payment().CreatePayment(request);
             Assert.NotNull(response.Id);
             Assert.AreEqual(request.Price, response.Price);
             Assert.AreEqual(request.PaidPrice, response.PaidPrice);
@@ -202,7 +202,7 @@ namespace Samples
                 }
             };
 
-            var response = _tokenPayClient.Payment().CreatePayment(request);
+            var response = _tokenPay.Payment().CreatePayment(request);
             Assert.NotNull(response.Id);
             Assert.AreEqual(request.Price, response.Price);
             Assert.AreEqual(request.PaidPrice, response.PaidPrice);
@@ -275,7 +275,7 @@ namespace Samples
                 }
             };
 
-            var response = _tokenPayClient.Payment().Init3DSPayment(request);
+            var response = _tokenPay.Payment().Init3DSPayment(request);
             Assert.NotNull(response);
             Assert.NotNull(response.HtmlContent);
             Assert.NotNull(response.GetDecodedHtmlContent());
@@ -289,7 +289,7 @@ namespace Samples
                 PaymentId = 1
             };
 
-            var response = _tokenPayClient.Payment().Complete3DSPayment(request);
+            var response = _tokenPay.Payment().Complete3DSPayment(request);
             Assert.NotNull(response);
         }
 
@@ -302,7 +302,7 @@ namespace Samples
                 IsTransactional = true
             };
 
-            var response = _tokenPayClient.Payment().ApprovePaymentTransactions(request);
+            var response = _tokenPay.Payment().ApprovePaymentTransactions(request);
             Assert.NotNull(response);
             Assert.AreEqual(2, response.Size);
         }
@@ -316,7 +316,7 @@ namespace Samples
                 IsTransactional = true
             };
 
-            var response = _tokenPayClient.Payment().DisapprovePaymentTransactions(request);
+            var response = _tokenPay.Payment().DisapprovePaymentTransactions(request);
             Assert.NotNull(response);
             Assert.AreEqual(2, response.Size);
         }
@@ -326,7 +326,7 @@ namespace Samples
         {
             long paymentId = 1;
 
-            var response = _tokenPayClient.Payment().RetrievePayment(paymentId);
+            var response = _tokenPay.Payment().RetrievePayment(paymentId);
             Assert.NotNull(response);
             Assert.AreEqual(paymentId, response.Id);
         }
@@ -340,7 +340,7 @@ namespace Samples
                 PaymentStatus = PaymentStatus.Success
             };
 
-            var response = _tokenPayClient.Payment().SearchPayments(request);
+            var response = _tokenPay.Payment().SearchPayments(request);
             Assert.NotNull(response);
             Assert.True(response.Items.Count > 0);
         }
@@ -354,7 +354,7 @@ namespace Samples
                 RefundDestinationType = RefundDestinationType.Card
             };
 
-            var response = _tokenPayClient.Payment().RefundPayment(request);
+            var response = _tokenPay.Payment().RefundPayment(request);
             Assert.NotNull(response);
             Assert.AreEqual(request.PaymentId, response.PaymentId);
             Assert.AreEqual(RefundStatus.Success, response.Status);
@@ -365,7 +365,7 @@ namespace Samples
         {
             long paymentRefundId = 1;
 
-            var response = _tokenPayClient.Payment().RetrievePaymentRefund(paymentRefundId);
+            var response = _tokenPay.Payment().RetrievePaymentRefund(paymentRefundId);
             Assert.NotNull(response);
             Assert.AreEqual(paymentRefundId, response.Id);
         }
@@ -381,7 +381,7 @@ namespace Samples
                 RefundDestinationType = RefundDestinationType.Card
             };
 
-            var response = _tokenPayClient.Payment().RefundPaymentTransaction(request);
+            var response = _tokenPay.Payment().RefundPaymentTransaction(request);
             Assert.NotNull(response);
             Assert.AreEqual(request.PaymentTransactionId, response.PaymentTransactionId);
             Assert.AreEqual(RefundStatus.Success, response.Status);
@@ -392,7 +392,7 @@ namespace Samples
         {
             long paymentTransactionRefundId = 1;
 
-            var response = _tokenPayClient.Payment().RetrievePaymentTransactionRefund(paymentTransactionRefundId);
+            var response = _tokenPay.Payment().RetrievePaymentTransactionRefund(paymentTransactionRefundId);
             Assert.NotNull(response);
             Assert.AreEqual(paymentTransactionRefundId, response.Id);
             Assert.AreEqual(RefundStatus.Success, response.Status);
@@ -406,7 +406,7 @@ namespace Samples
                 PaymentId = 1
             };
 
-            var response = _tokenPayClient.Payment().SearchPaymentTransactionRefunds(request);
+            var response = _tokenPay.Payment().SearchPaymentTransactionRefunds(request);
             Assert.NotNull(response);
             Assert.True(response.Items.Count > 0);
         }
@@ -419,7 +419,7 @@ namespace Samples
                 CardToken = "fac377f2-ab15-4696-88d2-5e71b27ec378",
                 CardUserKey = "11a078c4-3c32-4796-90b1-51ee5517a212"
             };
-            Assert.DoesNotThrow(() => _tokenPayClient.Payment().DeleteStoredCard(request));
+            Assert.DoesNotThrow(() => _tokenPay.Payment().DeleteStoredCard(request));
         }
 
         [Test]
@@ -436,7 +436,7 @@ namespace Samples
                 CardType = CardType.CreditCard
             };
 
-            var response = _tokenPayClient.Payment().SearchStoredCards(request);
+            var response = _tokenPay.Payment().SearchStoredCards(request);
             Assert.NotNull(response);
             Assert.True(response.Items.Count > 0);
         }

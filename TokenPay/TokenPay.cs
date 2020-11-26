@@ -7,7 +7,7 @@ using TokenPay.Request.Common;
 
 namespace TokenPay
 {
-    public class TokenPayClient
+    public class TokenPay
     {
         private const string BaseUrl = "https://api-gateway.tokenpay.com.tr";
         private readonly InstallmentAdapter _installmentAdapter;
@@ -15,12 +15,12 @@ namespace TokenPay
         private readonly PaymentAdapter _paymentAdapter;
         private readonly SettlementReportingAdapter _settlementReportingAdapter;
 
-        public TokenPayClient(string apiKey, string secretKey)
+        public TokenPay(string apiKey, string secretKey)
             : this(apiKey, secretKey, BaseUrl)
         {
         }
 
-        public TokenPayClient(string apiKey, string secretKey, string baseUrl)
+        public TokenPay(string apiKey, string secretKey, string baseUrl)
         {
             ConfigureJsonConverter();
 
