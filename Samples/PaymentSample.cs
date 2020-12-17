@@ -294,6 +294,57 @@ namespace Samples
         }
 
         [Test]
+        public void Init_Checkout_Payment()
+        {
+            var request = new InitCheckoutPaymentRequest()
+            {
+                Price = new decimal(100.0),
+                PaidPrice = new decimal(100.0),
+                WalletPrice = new decimal(0.0),
+                Installment = 1,
+                ConversationId = "456d1297-908e-4bd6-a13b-4be31a6e47d5",
+                Currency = Currency.Try,
+                PaymentGroup = PaymentGroup.ListingOrSubscription,
+                CallbackUrl = "https://www.your-website.com/tokenpay-checkout-callback",
+                Items = new List<PaymentItem>
+                {
+                    new PaymentItem
+                    {
+                        Name = "Item 1",
+                        ExternalId = Guid.NewGuid().ToString(),
+                        Price = new decimal(30.0)
+                    },
+                    new PaymentItem
+                    {
+                        Name = "Item 2",
+                        ExternalId = Guid.NewGuid().ToString(),
+                        Price = new decimal(50.0)
+                    },
+                    new PaymentItem
+                    {
+                        Name = "Item 3",
+                        ExternalId = Guid.NewGuid().ToString(),
+                        Price = new decimal(20.0)
+                    }
+                }
+            };
+
+            var response = _tokenPay.Payment().InitCheckoutPayment(request);
+            Assert.NotNull(response.Token);
+            Assert.NotNull(response.PageUrl);
+        }
+        
+        [Test]
+        public void Retrieve_Checkout_Payment()
+        {
+            var token = "fe4b0c2d-3c48-4553-9429-695d204bd7c1";
+
+            var response = _tokenPay.Payment().RetrieveCheckoutPayment(token);
+            Assert.NotNull(response.Id);
+        }
+
+        
+        [Test]
         public void Approve_Payment_Transactions()
         {
             var request = new ApprovePaymentTransactionsRequest
