@@ -68,6 +68,21 @@ namespace TokenPay.Adapter
                 CreateHeaders(completeThreeDsPaymentRequest, path, RequestOptions),
                 completeThreeDsPaymentRequest);
         }
+        
+        public InitCheckoutPaymentResponse InitCheckoutPayment(InitCheckoutPaymentRequest initCheckoutPaymentRequest)
+        {
+            var path = "/payment/v1/checkout-payment/init";
+            return RestClient.Post<InitCheckoutPaymentResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(initCheckoutPaymentRequest, path, RequestOptions),
+                initCheckoutPaymentRequest);
+        }
+        
+        public PaymentResponse RetrieveCheckoutPayment(string token)
+        {
+            var path = "/payment/v1/checkout-payment?token=" + token;
+            return RestClient.Get<PaymentResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(path, RequestOptions));
+        }
 
         public PaymentTransactionRefundResponse RefundPaymentTransaction(
             RefundPaymentTransactionRequest refundPaymentTransactionRequest)
