@@ -24,6 +24,8 @@ namespace TokenPay.Request
         public string CallbackUrl { get; set; }
 
         public PaymentPhase PaymentPhase { get; set; } = PaymentPhase.Auth;
+        
+        public string CardUserKey { get; set; }
 
         public long? BuyerId { get; set; }
 

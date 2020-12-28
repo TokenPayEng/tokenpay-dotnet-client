@@ -306,6 +306,7 @@ namespace Samples
                 Currency = Currency.Try,
                 PaymentGroup = PaymentGroup.ListingOrSubscription,
                 CallbackUrl = "https://www.your-website.com/tokenpay-checkout-callback",
+                CardUserKey = "eee24372-1735-4bc1-a534-023f1e02a03e",
                 Items = new List<PaymentItem>
                 {
                     new PaymentItem
