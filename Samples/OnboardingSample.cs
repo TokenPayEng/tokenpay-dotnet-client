@@ -9,8 +9,8 @@ namespace Samples
 {
     public class OnboardingSample
     {
-        private readonly TokenPay.TokenPay _tokenPay =
-            new TokenPay.TokenPay("api-key", "secret-key", "https://api-gateway.tokenpay.com.tr");
+        private readonly TokenPayClient _tokenPayClient =
+            new TokenPayClient("api-key", "secret-key", "https://api-gateway.tokenpay.com.tr");
 
         [Test]
         public void Create_Sub_Merchant()
@@ -32,7 +32,7 @@ namespace Samples
                 Address = "Suadiye Mah. Örnek Cd. No:23, 34740 Kadıköy/İstanbul"
             };
 
-            var response = _tokenPay.Onboarding().CreateSubMerchant(request);
+            var response = _tokenPayClient.Onboarding().CreateSubMerchant(request);
             Assert.NotNull(response.Id);
             Assert.AreEqual(request.ContactName, response.ContactName);
             Assert.AreEqual(request.ContactSurname, response.ContactSurname);
@@ -69,7 +69,7 @@ namespace Samples
                 Address = "Suadiye Mah. Örnek Cd. No:23, 34740 Kadıköy/İstanbul"
             };
 
-            var response = _tokenPay.Onboarding().UpdateSubMerchant(subMerchantId, request);
+            var response = _tokenPayClient.Onboarding().UpdateSubMerchant(subMerchantId, request);
             Assert.AreEqual(subMerchantId, response.Id);
             Assert.AreEqual(request.ContactName, response.ContactName);
             Assert.AreEqual(request.ContactSurname, response.ContactSurname);
@@ -89,7 +89,7 @@ namespace Samples
         {
             var subMerchantId = 1L;
 
-            var response = _tokenPay.Onboarding().RetrieveSubMerchant(subMerchantId);
+            var response = _tokenPayClient.Onboarding().RetrieveSubMerchant(subMerchantId);
             Assert.AreEqual(subMerchantId, response.Id);
         }
 
@@ -102,7 +102,7 @@ namespace Samples
                 SubMerchantIds = new HashSet<long> {1, 2}
             };
 
-            var response = _tokenPay.Onboarding().SearchSubMerchants(request);
+            var response = _tokenPayClient.Onboarding().SearchSubMerchants(request);
             Assert.True(response.Items.Count > 0);
         }
 
@@ -119,7 +119,7 @@ namespace Samples
                 IdentityNumber = "11111111110"
             };
 
-            var response = _tokenPay.Onboarding().CreateBuyer(request);
+            var response = _tokenPayClient.Onboarding().CreateBuyer(request);
             Assert.NotNull(response.Id);
             Assert.AreEqual(request.BuyerExternalId, response.BuyerExternalId);
             Assert.AreEqual(request.Email, response.Email);
@@ -142,7 +142,7 @@ namespace Samples
                 IdentityNumber = "11111111110"
             };
 
-            var response = _tokenPay.Onboarding().UpdateBuyer(buyerId, request);
+            var response = _tokenPayClient.Onboarding().UpdateBuyer(buyerId, request);
             Assert.AreEqual(buyerId, response.Id);
             Assert.AreEqual(request.Email, response.Email);
             Assert.AreEqual(request.GsmNumber, response.GsmNumber);
@@ -154,9 +154,9 @@ namespace Samples
         [Test]
         public void Retrieve_Buyer()
         {
-            long buyerId = 1L;
+            var buyerId = 1L;
 
-            var response = _tokenPay.Onboarding().RetrieveBuyer(buyerId);
+            var response = _tokenPayClient.Onboarding().RetrieveBuyer(buyerId);
             Assert.AreEqual(buyerId, response.Id);
         }
     }

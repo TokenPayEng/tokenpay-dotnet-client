@@ -7,15 +7,15 @@ namespace Samples
 {
     public class InstallmentSample
     {
-        private readonly TokenPay.TokenPay _tokenPay =
-            new TokenPay.TokenPay("api-key", "secret-key", "https://api-gateway.tokenpay.com.tr");
+        private readonly TokenPayClient _tokenPayClient =
+            new TokenPayClient("api-key", "secret-key", "https://api-gateway.tokenpay.com.tr");
 
         [Test]
         public void Retrieve_Bin()
         {
             var binNumber = "525864";
 
-            var response = _tokenPay.Installment().RetrieveBinNumber(binNumber);
+            var response = _tokenPayClient.Installment().RetrieveBinNumber(binNumber);
             Assert.NotNull(response);
             Assert.AreEqual(response.BinNumber, binNumber);
             Assert.AreEqual(response.CardType, CardType.CreditCard);
@@ -36,7 +36,7 @@ namespace Samples
                 Currency = Currency.Try
             };
 
-            var response = _tokenPay.Installment().SearchInstallments(request);
+            var response = _tokenPayClient.Installment().SearchInstallments(request);
             Assert.True(response.Items.Count > 0);
         }
     }
