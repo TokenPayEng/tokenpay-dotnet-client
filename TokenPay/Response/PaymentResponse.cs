@@ -19,6 +19,7 @@ namespace TokenPay.Response
         public PaymentType? PaymentType { get; set; }
         public PaymentGroup? PaymentGroup { get; set; }
         public PaymentStatus? PaymentStatus { get; set; }
+        public ConnectorType ConnectorType { get; set; }
         public PaymentPhase? PaymentPhase { get; set; }
         public bool? IsThreeDS { get; set; }
         public decimal? MerchantCommissionRate { get; set; }
