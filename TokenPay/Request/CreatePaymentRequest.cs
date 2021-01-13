@@ -26,6 +26,8 @@ namespace TokenPay.Request
         public long? BuyerId { get; set; }
 
         public Card Card { get; set; }
+        
+        public string PosAlias { get; set; }
 
         public IList<PaymentItem> Items { get; set; }
     }

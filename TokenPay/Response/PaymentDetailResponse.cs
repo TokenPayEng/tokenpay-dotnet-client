@@ -15,6 +15,7 @@ namespace TokenPay.Response
         public decimal? PaidPrice { get; set; }
         public decimal? WalletPrice { get; set; }
         public PaymentType? PaymentType { get; set; }
+        public ConnectorType ConnectorType { get; set; }
         public Currency? Currency { get; set; }
         public PaymentStatus? PaymentStatus { get; set; }
         public string ConversationId { get; set; }

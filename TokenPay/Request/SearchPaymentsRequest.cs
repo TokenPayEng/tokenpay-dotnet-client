@@ -15,6 +15,7 @@ namespace TokenPay.Request
         public ISet<long> SubMerchantIds { get; set; }
         public ISet<string> ItemExternalIds { get; set; }
         public PaymentStatus? PaymentStatus { get; set; }
+        public ConnectorType ConnectorType { get; set; }
 
         public Currency? Currency { get; set; }
         public string BinNumber { get; set; }
