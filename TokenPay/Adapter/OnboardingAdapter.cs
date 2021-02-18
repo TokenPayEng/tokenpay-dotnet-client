@@ -63,5 +63,13 @@ namespace TokenPay.Adapter
             var path = "/onboarding/v1/buyers/" + id;
             return RestClient.Get<BuyerResponse>(RequestOptions.BaseUrl + path, CreateHeaders(path, RequestOptions));
         }
+        
+        public BuyerListResponse SearchBuyers(SearchBuyersRequest searchBuyersRequest)
+        {
+            var queryParam = RequestQueryParamsBuilder.BuildQueryParam(searchBuyersRequest);
+            var path = "/onboarding/v1/buyers" + queryParam;
+            return RestClient.Get<BuyerListResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(path, RequestOptions));
+        }
     }
 }

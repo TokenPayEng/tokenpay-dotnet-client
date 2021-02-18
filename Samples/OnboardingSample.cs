@@ -159,5 +159,17 @@ namespace Samples
             var response = _tokenPayClient.Onboarding().RetrieveBuyer(buyerId);
             Assert.AreEqual(buyerId, response.Id);
         }
+        
+        [Test]
+        public void Search_Buyers()
+        {
+            var request = new SearchBuyersRequest()
+            {
+                Name = "Zeytinyağı Üretim"
+            };
+
+            var response = _tokenPayClient.Onboarding().SearchBuyers(request);
+            Assert.NotNull(response);
+        }
     }
 }
