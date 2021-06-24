@@ -31,7 +31,7 @@ namespace TokenPay.Request.Common
 
                 HashAlgorithm algorithm = SHA256.Create();
                 var hash = algorithm.ComputeHash(Encoding.UTF8.GetBytes(hashData));
-                return Convert.ToBase64String(hash).ToUpper();
+                return Convert.ToBase64String(hash);
             }
             catch (exception e)
             {

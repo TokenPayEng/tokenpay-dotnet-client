@@ -20,7 +20,7 @@ namespace Test
         public void Should_Generate_Hash()
         {
             //given
-            var expectedSignature = "JAIELEQK7VZ4LJDB9UOWYVIYAM0H5DWJGFJDC5EV4Y4=";
+            var expectedSignature = "JaiELeQK7vZ4lJDb9uOWYVIYAm0h5dwJgFjDc5eV4Y4=";
             var request = new CreateBuyerRequest
             {
                 BuyerExternalId = "ext-1511",
@@ -44,7 +44,7 @@ namespace Test
         public void Should_Generate_Hash_When_Request_Body_Null()
         {
             //given
-            var expectedSignature = "YRF3CBLVJP9TFHTR9NWSMZPV91HIBPZXJT88NDEWXIK=";
+            var expectedSignature = "yRf3Cblvjp9tfHtR9NWSmZpV91HibpzXJt88ndEWxik=";
 
             //when
             var signature = HashGenerator.GenerateHash("http://api-gateway.tokenpay.com.tr", "api-key", "secret-key",
