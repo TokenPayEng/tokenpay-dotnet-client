@@ -14,6 +14,7 @@ namespace TokenPay
         private readonly OnboardingAdapter _onboardingAdapter;
         private readonly PaymentAdapter _paymentAdapter;
         private readonly SettlementReportingAdapter _settlementReportingAdapter;
+        private readonly LinkAdapter _linkAdapter;
 
         public TokenPayClient(string apiKey, string secretKey)
             : this(apiKey, secretKey, BaseUrl)
@@ -35,6 +36,7 @@ namespace TokenPay
             _installmentAdapter = new InstallmentAdapter(requestOptions);
             _onboardingAdapter = new OnboardingAdapter(requestOptions);
             _settlementReportingAdapter = new SettlementReportingAdapter(requestOptions);
+            _linkAdapter = new LinkAdapter(requestOptions);
         }
 
         public PaymentAdapter Payment()
@@ -57,6 +59,11 @@ namespace TokenPay
             return _settlementReportingAdapter;
         }
 
+        public LinkAdapter LinkAdapter()
+        {
+            return _linkAdapter;
+        }
+
         private static void ConfigureJsonConverter()
         {
             JsonConvert.DefaultSettings = () =>
@@ -67,7 +74,11 @@ namespace TokenPay
                     NullValueHandling = NullValueHandling.Ignore,
                     Converters = new List<JsonConverter>
                     {
-                        new StringEnumConverter()
+                        new StringEnumConverter(),
+                        new IsoDateTimeConverter()
+                        {
+                            DateTimeFormat = "yyyy'-'MM'-'dd'T'HH':'mm':'ss"
+                        }
                     }
                 };
                 return settings;
