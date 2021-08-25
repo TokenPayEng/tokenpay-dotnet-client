@@ -176,5 +176,12 @@ namespace TokenPay.Adapter
             return RestClient.Get<StoredCardListResponse>(RequestOptions.BaseUrl + path,
                 CreateHeaders(path, RequestOptions));
         }
+        
+        public PaymentResponse PostAuthPayment(long paymentId, PostAuthPaymentRequest postAuthPaymentRequest)
+        {
+            var path = "/payment/v1/card-payments/" + paymentId + "/post-auth";
+            return RestClient.Post<PaymentResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(postAuthPaymentRequest, path, RequestOptions), postAuthPaymentRequest);
+        }
     }
 }

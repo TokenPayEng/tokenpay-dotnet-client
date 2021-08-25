@@ -617,5 +617,87 @@ namespace Samples
             Assert.NotNull(response);
             Assert.True(response.Items.Count > 0);
         }
+        
+        [Test]
+        public void Create_Pre_Auth_Payment()
+        {
+            var request = new CreatePaymentRequest
+            {
+                Price = new decimal(100.0),
+                PaidPrice = new decimal(100.0),
+                WalletPrice = new decimal(0.0),
+                Installment = 1,
+                ConversationId = "456d1297-908e-4bd6-a13b-4be31a6e47d5",
+                Currency = Currency.Try,
+                PaymentGroup = PaymentGroup.ListingOrSubscription,
+                PaymentPhase = PaymentPhase.PreAuth,
+                Card = new Card
+                {
+                    CardHolderName = "Haluk Demir",
+                    CardNumber = "5258640000000001",
+                    ExpireYear = "2044",
+                    ExpireMonth = "07",
+                    Cvc = "000"
+                },
+                Items = new List<PaymentItem>
+                {
+                    new PaymentItem
+                    {
+                        Name = "Item 1",
+                        ExternalId = Guid.NewGuid().ToString(),
+                        Price = new decimal(30.0)
+                    },
+                    new PaymentItem
+                    {
+                        Name = "Item 2",
+                        ExternalId = Guid.NewGuid().ToString(),
+                        Price = new decimal(50.0)
+                    },
+                    new PaymentItem
+                    {
+                        Name = "Item 3",
+                        ExternalId = Guid.NewGuid().ToString(),
+                        Price = new decimal(20.0)
+                    }
+                }
+            };
+
+            var response = _tokenPayClient.Payment().CreatePayment(request);
+            Assert.NotNull(response.Id);
+            Assert.AreEqual(request.Price, response.Price);
+            Assert.AreEqual(request.PaidPrice, response.PaidPrice);
+            Assert.AreEqual(request.WalletPrice, response.WalletPrice);
+            Assert.AreEqual(request.Currency, response.Currency);
+            Assert.AreEqual(request.Installment, response.Installment);
+            Assert.AreEqual(request.PaymentGroup, response.PaymentGroup);
+            Assert.AreEqual(request.PaymentPhase, response.PaymentPhase);
+            Assert.AreEqual(false, response.IsThreeDS);
+            Assert.AreEqual(decimal.Zero, response.MerchantCommissionRate);
+            Assert.AreEqual(decimal.Zero, response.MerchantCommissionRateAmount);
+            Assert.AreEqual(false, response.PaidWithStoredCard);
+            Assert.AreEqual("525864", response.BinNumber);
+            Assert.AreEqual("0001", response.LastFourDigits);
+            Assert.AreEqual(CardType.CreditCard, response.CardType);
+            Assert.AreEqual(CardAssociation.MasterCard, response.CardAssociation);
+            Assert.AreEqual("World", response.CardBrand);
+            Assert.AreEqual(3, response.PaymentTransactions.Count);
+            Assert.Null(response.CardUserKey);
+            Assert.Null(response.CardToken);
+        }
+        
+        [Test]
+        public void Post_Auth_Payment()
+        {
+            long paymentId = 1;
+            var request = new PostAuthPaymentRequest()
+            {
+                PaidPrice = new decimal(100.0)
+            };
+
+            var response = _tokenPayClient.Payment().PostAuthPayment(paymentId, request);
+            Assert.AreEqual(paymentId, response.Id);
+            Assert.AreEqual(request.PaidPrice, response.PaidPrice);
+            Assert.AreEqual("POST_AUTH", response.PaymentPhase);
+        }
     }
 }
