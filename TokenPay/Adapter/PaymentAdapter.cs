@@ -2,6 +2,7 @@ using TokenPay.Net;
 using TokenPay.Request;
 using TokenPay.Request.Common;
 using TokenPay.Response;
+using TokenPay.Response.Dto;
 
 namespace TokenPay.Adapter
 {
@@ -18,7 +19,7 @@ namespace TokenPay.Adapter
                 CreateHeaders(createPaymentRequest, path, RequestOptions),
                 createPaymentRequest);
         }
-        
+
         public PaymentDetailResponse RetrievePayment(long id)
         {
             var path = "/payment-reporting/v1/payments/" + id;
@@ -53,6 +54,15 @@ namespace TokenPay.Adapter
                 disapprovePaymentTransactionsRequest);
         }
 
+        public PaymentTransactionResponse UpdatePaymentTransaction(long id,
+            UpdatePaymentTransactionsRequest updatePaymentTransactionsRequest)
+        {
+            var path = "/payment/v1/payment-transactions/" + id;
+            return RestClient.Put<PaymentTransactionResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(updatePaymentTransactionsRequest, path, RequestOptions),
+                updatePaymentTransactionsRequest);
+        }
+
         public InitThreeDSPaymentResponse Init3DSPayment(InitThreeDSPaymentRequest initThreeDSPaymentRequest)
         {
             var path = "/payment/v1/card-payments/3ds-init";
@@ -68,7 +78,7 @@ namespace TokenPay.Adapter
                 CreateHeaders(completeThreeDsPaymentRequest, path, RequestOptions),
                 completeThreeDsPaymentRequest);
         }
-        
+
         public InitCheckoutPaymentResponse InitCheckoutPayment(InitCheckoutPaymentRequest initCheckoutPaymentRequest)
         {
             var path = "/payment/v1/checkout-payments/init";
@@ -76,7 +86,7 @@ namespace TokenPay.Adapter
                 CreateHeaders(initCheckoutPaymentRequest, path, RequestOptions),
                 initCheckoutPaymentRequest);
         }
-        
+
         public PaymentResponse RetrieveCheckoutPayment(string token)
         {
             var path = "/payment/v1/checkout-payments?token=" + token;
@@ -176,7 +186,7 @@ namespace TokenPay.Adapter
             return RestClient.Get<StoredCardListResponse>(RequestOptions.BaseUrl + path,
                 CreateHeaders(path, RequestOptions));
         }
-        
+
         public PaymentResponse PostAuthPayment(long paymentId, PostAuthPaymentRequest postAuthPaymentRequest)
         {
             var path = "/payment/v1/card-payments/" + paymentId + "/post-auth";

@@ -7,24 +7,24 @@ namespace TokenPay.Exception
         private const string GeneralErrorCode = "0";
         private const string GeneralErrorDescription = "An error occurred.";
         private const string GeneralErrorGroup = "Unknown";
-        private string _errorCode;
-        private string _errorDescription;
-        private string _errorGroup;
+        public string ErrorCode;
+        public string ErrorDescription;
+        public string ErrorGroup;
 
         public TokenPayException(string errorCode, string errorDescription, string errorGroup)
             : base(errorDescription)
         {
-            _errorCode = errorCode;
-            _errorDescription = errorDescription;
-            _errorGroup = errorGroup;
+            ErrorCode = errorCode;
+            ErrorDescription = errorDescription;
+            ErrorGroup = errorGroup;
         }
 
         public TokenPayException(exception exception)
             : base(exception.Message, exception)
         {
-            _errorCode = GeneralErrorCode;
-            _errorDescription = GeneralErrorDescription;
-            _errorGroup = GeneralErrorGroup;
+            ErrorCode = GeneralErrorCode;
+            ErrorDescription = GeneralErrorDescription;
+            ErrorGroup = GeneralErrorGroup;
         }
     }
 }
