@@ -704,7 +704,7 @@ namespace Samples
         public void Update_Payment_Transaction()
         {
             long PaymentTransactionId = 100;
-            var request = new UpdatePaymentTransactionsRequest()
+            var request = new UpdatePaymentTransactionRequest()
             {
                 SubMerchantId = 2,
                 SubMerchantPrice = new decimal(10.0)

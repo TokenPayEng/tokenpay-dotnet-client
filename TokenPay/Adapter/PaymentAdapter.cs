@@ -55,12 +55,12 @@ namespace TokenPay.Adapter
         }
 
         public PaymentTransactionResponse UpdatePaymentTransaction(long id,
-            UpdatePaymentTransactionsRequest updatePaymentTransactionsRequest)
+            UpdatePaymentTransactionRequest updatePaymentTransactionRequest)
         {
             var path = "/payment/v1/payment-transactions/" + id;
             return RestClient.Put<PaymentTransactionResponse>(RequestOptions.BaseUrl + path,
-                CreateHeaders(updatePaymentTransactionsRequest, path, RequestOptions),
-                updatePaymentTransactionsRequest);
+                CreateHeaders(updatePaymentTransactionRequest, path, RequestOptions),
+                updatePaymentTransactionRequest);
         }
 
         public InitThreeDSPaymentResponse Init3DSPayment(InitThreeDSPaymentRequest initThreeDSPaymentRequest)
