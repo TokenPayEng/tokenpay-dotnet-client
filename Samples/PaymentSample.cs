@@ -78,7 +78,7 @@ namespace Samples
             Assert.Null(response.CardUserKey);
             Assert.Null(response.CardToken);
         }
-        
+
         [Test]
         public void Create_Gateway_Payment()
         {
@@ -348,7 +348,7 @@ namespace Samples
             Assert.NotNull(response.HtmlContent);
             Assert.NotNull(response.GetDecodedHtmlContent());
         }
-        
+
         [Test]
         public void Init_3DS_Gateway_Payment()
         {
@@ -617,7 +617,7 @@ namespace Samples
             Assert.NotNull(response);
             Assert.True(response.Items.Count > 0);
         }
-        
+
         [Test]
         public void Create_Pre_Auth_Payment()
         {
@@ -684,7 +684,7 @@ namespace Samples
             Assert.Null(response.CardUserKey);
             Assert.Null(response.CardToken);
         }
-        
+
         [Test]
         public void Post_Auth_Payment()
         {
@@ -698,6 +698,20 @@ namespace Samples
             Assert.AreEqual(paymentId, response.Id);
             Assert.AreEqual(request.PaidPrice, response.PaidPrice);
             Assert.AreEqual("POST_AUTH", response.PaymentPhase);
+        }
+
+        [Test]
+        public void Update_Payment_Transaction()
+        {
+            long PaymentTransactionId = 100;
+            var request = new UpdatePaymentTransactionRequest()
+            {
+                SubMerchantId = 2,
+                SubMerchantPrice = new decimal(10.0)
+            };
+
+            var response = _tokenPayClient.Payment().UpdatePaymentTransaction(PaymentTransactionId, request);
+            Assert.AreEqual(PaymentTransactionId, response.Id);
         }
     }
 }
