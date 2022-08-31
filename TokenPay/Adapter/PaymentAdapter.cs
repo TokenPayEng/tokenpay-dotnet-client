@@ -89,7 +89,7 @@ namespace TokenPay.Adapter
 
         public PaymentResponse RetrieveCheckoutPayment(string token)
         {
-            var path = "/payment/v1/checkout-payments?token=" + token;
+            var path = "/payment/v1/checkout-payments/"+ token;
             return RestClient.Get<PaymentResponse>(RequestOptions.BaseUrl + path,
                 CreateHeaders(path, RequestOptions));
         }
