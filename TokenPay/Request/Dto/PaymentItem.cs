@@ -7,5 +7,6 @@ namespace TokenPay.Request.Dto
         public string ExternalId { get; set; }
         public long? SubMerchantId { get; set; }
         public decimal? SubMerchantPrice { get; set; }
+        public string SubExternalId { get; set; }
     }
 }

@@ -32,5 +32,9 @@ namespace TokenPay.Request
         public Card Card { get; set; }
 
         public IList<PaymentItem> Items { get; set; }
+
+        public bool threedsVerifyOnly{get;set;}
+
+        public bool  saveMerchantDefaultCard{get;set;}
     }
 }
