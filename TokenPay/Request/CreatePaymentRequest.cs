@@ -7,6 +7,7 @@ namespace TokenPay.Request
 {
     public class CreatePaymentRequest : IRequest
     {
+        
         public decimal? Price { get; set; }
 
         public decimal? PaidPrice { get; set; }
