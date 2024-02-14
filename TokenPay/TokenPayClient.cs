@@ -74,7 +74,11 @@ namespace TokenPay
                     NullValueHandling = NullValueHandling.Ignore,
                     Converters = new List<JsonConverter>
                     {
-                        new StringEnumConverter()
+                       new StringEnumConverter(),
+                       new IsoDateTimeConverter()
+                       {
+                            DateTimeFormat = "yyyy'-'MM'-'dd'T'HH':'mm':'ss"
+                       }
                     }
                 };
                 return settings;
