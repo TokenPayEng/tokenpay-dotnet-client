@@ -70,7 +70,6 @@ namespace TokenPay
             {
                 var settings = new JsonSerializerSettings
                 {
-                    ContractResolver = new CamelCasePropertyNamesContractResolver(),
                     NullValueHandling = NullValueHandling.Ignore,
                     Converters = new List<JsonConverter>
                     {
