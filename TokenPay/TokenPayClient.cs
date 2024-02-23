@@ -23,8 +23,7 @@ namespace TokenPay
 
         public TokenPayClient(string apiKey, string secretKey, string baseUrl)
         {
-            ConfigureJsonConverter();
-
+            
             var requestOptions = new RequestOptions
             {
                 ApiKey = apiKey,
@@ -64,20 +63,6 @@ namespace TokenPay
             return _linkAdapter;
         }
 
-        private static void ConfigureJsonConverter()
-        {
-            JsonConvert.DefaultSettings = () =>
-            {
-                var settings = new JsonSerializerSettings
-                {
-                    NullValueHandling = NullValueHandling.Ignore,
-                    Converters = new List<JsonConverter>
-                    {
-                        new StringEnumConverter()
-                    }
-                };
-                return settings;
-            };
-        }
+       
     }
 }

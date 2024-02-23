@@ -4,6 +4,7 @@ using System.Net;
 using System.Net.Http;
 using System.Text;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using TokenPay.Exception;
 using TokenPay.Request.Common;
 using TokenPay.Response.Common;
@@ -17,10 +18,10 @@ namespace TokenPay.Net
 
         static RestClient()
         {
-            #if !NETSTANDARD1_3
+#if !NETSTANDARD1_3
                 ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
-            #endif
-            var handler = new HttpClientHandler {AllowAutoRedirect = false};
+#endif
+            var handler = new HttpClientHandler { AllowAutoRedirect = false };
             HttpClient = new HttpClient(handler)
             {
                 Timeout = TimeSpan.FromSeconds(120)
@@ -90,9 +91,9 @@ namespace TokenPay.Net
 
         private static StringContent PrepareContent(IRequest request)
         {
-            if (request == null) return null;
-            var body = JsonConvert.SerializeObject(request);
-            return new StringContent(body, Encoding.UTF8, "application/json");
+            return request == null ? (StringContent)null : new StringContent(JsonConvert.SerializeObject((object)request, 
+                                new JsonSerializerSettings { ContractResolver = new CamelCasePropertyNamesContractResolver() }), 
+                                Encoding.UTF8, "application/json");
         }
     }
 }
