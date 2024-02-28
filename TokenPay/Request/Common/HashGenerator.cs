@@ -3,6 +3,7 @@ using System.Net;
 using System.Security.Cryptography;
 using System.Text;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using TokenPay.Exception;
 using exception = System.Exception;
 
@@ -21,7 +22,8 @@ namespace TokenPay.Request.Common
 
                 if (request != null)
                 {
-                    var requestBody = JsonConvert.SerializeObject(request);
+                    var requestBody = JsonConvert.SerializeObject(request, 
+                                new JsonSerializerSettings { ContractResolver = new CamelCasePropertyNamesContractResolver() });
                     hashData = decodedUrl + apiKey + secretKey + randomString + requestBody;
                 }
                 else
