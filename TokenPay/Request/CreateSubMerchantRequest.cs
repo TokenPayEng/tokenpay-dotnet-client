@@ -18,5 +18,6 @@ namespace TokenPay.Request
         public string ContactSurname { get; set; }
         public string IdentityNumber { get; set; }
         public string LegalCompanyTitle { get; set; }
+        public bool? OnTheFlyOnboarding { get; set; }
     }
 }
