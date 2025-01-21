@@ -18,6 +18,7 @@ namespace TokenPay.Response
         public string IdentityNumber { get; set; }
         public string LegalCompanyTitle { get; set; }
         public string SubMerchantExternalId { get; set; }
+        public bool? OnTheFlyOnboarding { get; set; }
         public SubMerchantType? SubMerchantType { get; set; }
     }
 }

@@ -29,7 +29,8 @@ namespace Samples
                 SubMerchantType = SubMerchantType.LimitedOrJointStockCompany,
                 TaxNumber = "1111111114",
                 TaxOffice = "Erenköy",
-                Address = "Suadiye Mah. Örnek Cd. No:23, 34740 Kadıköy/İstanbul"
+                Address = "Suadiye Mah. Örnek Cd. No:23, 34740 Kadıköy/İstanbul",
+                OnTheFlyOnboarding = true
             };
 
             var response = _tokenPayClient.Onboarding().CreateSubMerchant(request);
@@ -47,6 +48,7 @@ namespace Samples
             Assert.AreEqual(request.TaxNumber, response.TaxNumber);
             Assert.AreEqual(request.TaxOffice, response.TaxOffice);
             Assert.AreEqual(request.Address, response.Address);
+            Assert.AreEqual(request.OnTheFlyOnboarding,response.OnTheFlyOnboarding);
         }
 
         [Test]
