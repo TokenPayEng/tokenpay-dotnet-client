@@ -1,6 +1,7 @@
 using TokenPay.Request.Common;
 using TokenPay.Model;
 
+
 namespace TokenPay.Request
 {
     public class UpdateSubMerchantRequest : IRequest
