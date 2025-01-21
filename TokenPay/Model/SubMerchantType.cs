@@ -4,6 +4,8 @@ namespace TokenPay.Model
 {
     public enum SubMerchantType
     {
+        [EnumMember(Value = "DEFAULT")] Default,
+
         [EnumMember(Value = "PERSONAL")] Personal,
 
         [EnumMember(Value = "PRIVATE_COMPANY")]
