@@ -10,5 +10,7 @@ namespace TokenPay.Response
         public Currency Currency { get; set; }
         public long? MerchantId { get; set; }
         public MerchantType? MerchantType { get; set; }
+        public string Iban { get; set; }
+        public DateTime? ApproveDate { get; set; }
     }
 }

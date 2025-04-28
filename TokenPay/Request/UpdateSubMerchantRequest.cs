@@ -1,4 +1,6 @@
 using TokenPay.Request.Common;
+using TokenPay.Model;
+
 
 namespace TokenPay.Request
 {
@@ -16,5 +18,6 @@ namespace TokenPay.Request
         public string IdentityNumber { get; set; }
         public string LegalCompanyTitle { get; set; }
         public SubMerchantType? SubMerchantType { get; set; }
+        public Status? Status { get; set; }
     }
 }

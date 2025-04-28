@@ -20,5 +20,6 @@ namespace TokenPay.Response
         public string SubMerchantExternalId { get; set; }
         public bool? OnTheFlyOnboarding { get; set; }
         public SubMerchantType? SubMerchantType { get; set; }
+        public decimal? BalanceAmount {get; set; }
     }
 }

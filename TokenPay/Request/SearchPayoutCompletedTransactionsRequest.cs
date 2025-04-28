@@ -10,5 +10,6 @@ namespace TokenPay.Request
         public SettlementType? SettlementType { get; set; }
         public DateTime? StartDate { get; set; }
         public DateTime? EndDate { get; set; }
+        public long? SubMerchantId {get; set; }
     }
 }
