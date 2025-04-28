@@ -19,5 +19,6 @@ namespace TokenPay.Response
         public string LegalCompanyTitle { get; set; }
         public string SubMerchantExternalId { get; set; }
         public SubMerchantType? SubMerchantType { get; set; }
+        public decimal? BalanceAmount {get; set; }
     }
 }
