@@ -11,5 +11,9 @@ namespace TokenPay.Response.Dto
         public decimal? PfCommissionRateAmount { get; set; }
         public decimal? PfConversionRate { get; set; }
         public decimal? PfConversionRateAmount { get; set; }
+        public PayoutStatus? MerchantPayoutStatus {get; set;}
+        public PayoutStatus? SubMerchantPayoutStatus {get; set;}
+        public DateTime? MerchantPayoutStatusDate { get; set; }
+        public DateTime? SubMerchantPayoutStatusDate { get; set; }
     }
 }
