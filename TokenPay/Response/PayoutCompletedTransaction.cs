@@ -13,6 +13,6 @@ namespace TokenPay.Response
         public MerchantType? MerchantType { get; set; }
         public string Iban { get; set; }
         public DateTime? ApproveDate { get; set; }
-        public long? paymentId { get; set; }
+        public long? PaymentId { get; set; }
     }
 }
