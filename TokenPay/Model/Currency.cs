@@ -9,6 +9,7 @@ namespace TokenPay.Model
     {
         [EnumMember(Value = "TRY")] Try,
         [EnumMember(Value = "USD")] Usd,
-        [EnumMember(Value = "EUR")] Eur
+        [EnumMember(Value = "EUR")] Eur,
+        [EnumMember(Value = "AZN")] Azn
     }
 }
