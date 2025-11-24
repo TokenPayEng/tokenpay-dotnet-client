@@ -7,7 +7,7 @@ namespace TokenPay.Request
 {
     public class CreatePaymentRequest : IRequest
     {
-        
+
         public decimal? Price { get; set; }
 
         public decimal? PaidPrice { get; set; }
@@ -27,15 +27,19 @@ namespace TokenPay.Request
         public long? BuyerId { get; set; }
 
         public Card Card { get; set; }
-        
+
         public string PosAlias { get; set; }
 
         public IList<PaymentItem> Items { get; set; }
 
         public bool? threedsVerifyOnly { get; set; }
 
-        public bool?  saveMerchantDefaultCard { get; set; }
+        public bool? saveMerchantDefaultCard { get; set; }
 
-        public long? buyerSubmerchantId { get;set; }
+        public long? buyerSubmerchantId { get; set; }
+
+        public long? subscriptionId { get; set; }
+        
+        public PaymentPlan Plan{ get; set; }
     }
 }

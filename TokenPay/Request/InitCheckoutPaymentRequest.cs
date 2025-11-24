@@ -20,11 +20,11 @@ namespace TokenPay.Request
         public PaymentGroup? PaymentGroup { get; set; }
 
         public string ConversationId { get; set; }
-        
+
         public string CallbackUrl { get; set; }
 
         public PaymentPhase PaymentPhase { get; set; } = PaymentPhase.Auth;
-        
+
         public string CardUserKey { get; set; }
 
         public long? BuyerId { get; set; }
@@ -35,8 +35,12 @@ namespace TokenPay.Request
 
         public bool? threedsVerifyOnly { get; set; }
 
-        public bool?  saveMerchantDefaultCard { get; set; }
+        public bool? saveMerchantDefaultCard { get; set; }
 
         public long? buyerSubmerchantId { get; set; }
+        
+        public long? subscriptionId { get; set; }
+        
+        public PaymentPlan Plan{ get; set; }
     }
 }
