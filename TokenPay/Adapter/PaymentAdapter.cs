@@ -194,11 +194,11 @@ namespace TokenPay.Adapter
                 CreateHeaders(postAuthPaymentRequest, path, RequestOptions), postAuthPaymentRequest);
         }
 
-        public SubscriptionResponse SearchSubscription(SubscriptionSearchRequest subscriptionSearchRequest)
+        public SubscriptionListResponse SearchSubscription(SubscriptionSearchRequest subscriptionSearchRequest)
         {
             var query = RequestQueryParamsBuilder.BuildQueryParam(subscriptionSearchRequest);
             var path = "/payment/v2/subscription" + query;
-            return RestClient.Get<SubscriptionResponse>(RequestOptions.BaseUrl + path,
+            return RestClient.Get<SubscriptionListResponse>(RequestOptions.BaseUrl + path,
                 CreateHeaders(path, RequestOptions));
         }
 
