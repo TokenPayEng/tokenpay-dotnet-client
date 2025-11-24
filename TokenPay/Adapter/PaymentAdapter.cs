@@ -89,7 +89,7 @@ namespace TokenPay.Adapter
 
         public PaymentResponse RetrieveCheckoutPayment(string token)
         {
-            var path = "/payment/v1/checkout-payments/"+ token;
+            var path = "/payment/v1/checkout-payments/" + token;
             return RestClient.Get<PaymentResponse>(RequestOptions.BaseUrl + path,
                 CreateHeaders(path, RequestOptions));
         }
@@ -192,6 +192,37 @@ namespace TokenPay.Adapter
             var path = "/payment/v1/card-payments/" + paymentId + "/post-auth";
             return RestClient.Post<PaymentResponse>(RequestOptions.BaseUrl + path,
                 CreateHeaders(postAuthPaymentRequest, path, RequestOptions), postAuthPaymentRequest);
+        }
+
+        public SubscriptionResponse SearchSubscription(SubscriptionSearchRequest subscriptionSearchRequest)
+        {
+            var query = RequestQueryParamsBuilder.BuildQueryParam(subscriptionSearchRequest);
+            var path = "/payment/v2/subscription" + query;
+            return RestClient.Get<SubscriptionResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(path, RequestOptions));
+        }
+
+        public SubscriptionResponse RetrieveSubscription(long subscriptionId)
+        {
+            var path = "/payment/v2/subscription/" + subscriptionId;
+            return RestClient.Get<SubscriptionResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(path, RequestOptions));
+        }
+
+        public SubscriptionResponse UpdateSubscription(long id, UpdateSubscriptionRequest updateSubscriptionRequest)
+        {
+            var path = "/payment/v2/subscription/" + id;
+            return RestClient.Put<SubscriptionResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(updateSubscriptionRequest, path, RequestOptions),
+                updateSubscriptionRequest);
+        }
+        
+        public SubscriptionResponse RenewSubscription(SubscriptionRenewRequest subscriptionRenewRequest)
+        {
+            var path = "/payment/v2/subscription/" + "renew-subscription";
+            return RestClient.Post<SubscriptionResponse>(RequestOptions.BaseUrl + path,
+                CreateHeaders(subscriptionRenewRequest, path, RequestOptions),
+                subscriptionRenewRequest);
         }
     }
 }
