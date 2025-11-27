@@ -34,5 +34,6 @@ namespace TokenPay.Response
         public CardAssociation? CardAssociation { get; set; }
         public string CardBrand { get; set; }
         public IList<PaymentTransaction> PaymentTransactions;
+        public long? subscriptionId { get; set; }
     }
 }
