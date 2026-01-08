@@ -1,3 +1,4 @@
+using System.Dynamic;
 using TokenPay.Model;
 
 namespace TokenPay.Response
@@ -21,5 +22,7 @@ namespace TokenPay.Response
         public bool? OnTheFlyOnboarding { get; set; }
         public SubMerchantType? SubMerchantType { get; set; }
         public decimal? BalanceAmount {get; set; }
+
+        public decimal? RefundableBalanceAmount { get; set; }
     }
 }
