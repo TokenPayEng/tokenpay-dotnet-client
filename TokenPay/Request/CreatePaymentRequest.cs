@@ -40,6 +40,8 @@ namespace TokenPay.Request
 
         public long? subscriptionId { get; set; }
         
-        public PaymentPlan Plan{ get; set; }
+        public PaymentPlan Plan { get; set; }
+
+        public string buyerName { get; set; }
     }
 }
