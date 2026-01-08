@@ -42,6 +42,6 @@ namespace TokenPay.Request
         
         public PaymentPlan Plan { get; set; }
 
-        public string buyerName { get; set; }
+        public string BuyerName { get; set; }
     }
 }
