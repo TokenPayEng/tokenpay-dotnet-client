@@ -12,5 +12,6 @@ namespace TokenPay.Request
         public decimal? Price { get; set; }
         public int NochargeDayCount { get; set; }
         public SubscriptionCard Card { get; set; }
+        public int PaymentCount { get; set; }
     }
 }

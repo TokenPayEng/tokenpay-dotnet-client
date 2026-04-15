@@ -26,5 +26,8 @@ namespace TokenPay.Response
         
         public DateTime? NextPaymentDate { get; set; }
 
+        public int? PaidCount { get; set;}
+
+
     }
 }

@@ -8,6 +8,11 @@ namespace TokenPay.Model
 
         [EnumMember(Value = "PASSIVE")] Passive,
 
-        [EnumMember(Value = "PENDING")] Pending
+        [EnumMember(Value = "PENDING")] Pending,
+        [EnumMember(Value = "DELETED")] Deleted,
+        [EnumMember(Value = "PROCESSING")] Processing,
+        [EnumMember(Value = "ANOMALY")] Anomaly,
+        [EnumMember(Value = "WAITING")] Waiting,
+
     }
 }
